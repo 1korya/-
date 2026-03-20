@@ -1,73 +1,52 @@
-# React + TypeScript + Vite
+# Практическая работа 1 — Калькулятор-счётчик
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Приложение на **React 19 + TypeScript**, собранное с помощью **Vite**.  
+Реализует счётчик с четырьмя операциями и отслеживанием изменений через `useEffect`.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Запуск
 
-## React Compiler
+```bash
+# Установить зависимости
+npm install
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Запустить в режиме разработки
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Открыть в браузере: **http://localhost:5173**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Остановить сервер: `Ctrl + C`
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## Как работает приложение
+
+- Начальное значение счётчика — **100**
+- Четыре кнопки: **+5**, **−5**, **×5**, **÷5**
+- При нажатии на кнопку счётчик обновляется
+- При каждом изменении счётчика его значение выводится в **консоль браузера**
+- При открытии или обновлении страницы:
+  - счётчик сбрасывается на **100**
+  - в консоль выводится текущая **дата и время**
+
+> Консоль открывается в браузере через `F12` → вкладка **Console**
+
+---
+
+## Использованные хуки
+
+| Хук | Зависимости | Для чего |
+|---|---|---|
+| `useState` | — | хранит текущее значение счётчика |
+| `useEffect` | `[count]` | выводит значение в консоль при каждом изменении |
+| `useEffect` | `[]` | срабатывает один раз при загрузке — выводит время, сбрасывает счётчик |
+
+---
+
+## Стек
+
+- [React 19](https://react.dev)
+- [TypeScript 5.9](https://www.typescriptlang.org)
+- [Vite 7](https://vitejs.dev)
